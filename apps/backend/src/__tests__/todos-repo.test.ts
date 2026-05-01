@@ -4,9 +4,8 @@ import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import { sql } from "drizzle-orm";
 import * as schema from "../db/schema";
-import { Svc_Database, type DrizzleDB } from "../db";
+import { Svc_Database } from "../db";
 import { Svc_TodosRepo, L_TodosRepo } from "../services/todos-repo";
-import { E_TodoNotFound } from "@repo/shared";
 
 function makeTestRuntime() {
   const sqlite = new Database(":memory:");
@@ -93,7 +92,7 @@ describe("Svc_TodosRepo", () => {
     const result = await runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
-        const t1 = yield* repo.create("Active todo", "user-2");
+        yield* repo.create("Active todo", "user-2");
         const t2 = yield* repo.create("Completed todo", "user-2");
         yield* repo.toggle(t2.id, "user-2");
 
