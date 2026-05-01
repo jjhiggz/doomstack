@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { ORPCError } from "@orpc/client";
 import { match, P } from "ts-pattern";
 import { orpc } from "~/lib/orpc";
@@ -8,17 +8,12 @@ import { C_TodoForm } from "~/components/C_TodoForm";
 import { authClient } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/_authed/todos")({
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(
-      orpc.todos.list.queryOptions({ input: {} }),
-    );
-  },
   component: C_PageTodos,
 });
 
 function C_PageTodos() {
   const { session } = Route.useRouteContext();
-  const { data, error } = useSuspenseQuery(
+  const { data, error, isLoading } = useQuery(
     orpc.todos.list.queryOptions({ input: {} }),
   );
 
@@ -26,6 +21,10 @@ function C_PageTodos() {
     await authClient.signOut();
     window.location.href = "/login";
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (error) {
     return match(error)
@@ -59,7 +58,7 @@ function C_PageTodos() {
         <button onClick={handleLogout}>Logout</button>
       </header>
       <C_TodoForm />
-      <C_TodoList todos={data.todos} />
+      <C_TodoList todos={data?.todos ?? []} />
     </div>
   );
 }

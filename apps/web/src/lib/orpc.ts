@@ -3,8 +3,11 @@ import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import type { R_root } from "@repo/backend/router";
 
+const rpcUrl =
+  typeof window !== "undefined" ? "/rpc" : "http://localhost:3001/rpc";
+
 const link = new RPCLink({
-  url: "/rpc",
+  url: rpcUrl,
   headers: () => ({
     "Content-Type": "application/json",
   }),
