@@ -1,0 +1,7 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "rules": {
+    "typescript/no-unsafe-type-assertion": "error"
+  },
+  "ignorePatterns": ["node_modules", "dist", ".output", ".turbo", "*.gen.ts"]
+}
