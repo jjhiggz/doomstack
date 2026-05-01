@@ -4,7 +4,7 @@ import {
   ScrollRestoration,
 } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Meta, Scripts } from "@tanstack/start";
+import { Meta, Scripts } from "@tanstack/react-start";
 
 interface RouterContext {
   queryClient: QueryClient;

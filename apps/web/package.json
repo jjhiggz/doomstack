@@ -4,29 +4,29 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "start": "vinxi start"
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@repo/shared": "workspace:*",
     "@repo/backend": "workspace:*",
     "@tanstack/react-router": "latest",
-    "@tanstack/start": "latest",
+    "@tanstack/react-start": "latest",
     "@tanstack/react-query": "latest",
     "@orpc/client": "latest",
     "@orpc/tanstack-query": "latest",
+    "@vitejs/plugin-react": "latest",
     "better-auth": "latest",
     "ts-pattern": "latest",
     "effect": "latest",
     "effect-orpc": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "vinxi": "latest"
+    "vite": "latest"
   },
   "devDependencies": {
     "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "vite-tsconfig-paths": "latest"
+    "@types/react-dom": "latest"
   }
 }
