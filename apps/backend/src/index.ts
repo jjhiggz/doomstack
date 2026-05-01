@@ -1,3 +1,4 @@
+import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { RPCHandler } from "@orpc/server/fetch";
@@ -39,9 +40,7 @@ app.all("/rpc/*", async (c) => {
 });
 
 const port = 3001;
-console.log(`Backend running on http://localhost:${port}`);
 
-export default {
-  port,
-  fetch: app.fetch,
-};
+serve({ fetch: app.fetch, port }, () => {
+  console.log(`Backend running on http://localhost:${port}`);
+});

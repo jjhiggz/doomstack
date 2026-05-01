@@ -8,28 +8,29 @@
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsup src/index.ts --format esm --dts",
+    "build": "tsup src/index.ts --format esm",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "test": "vitest run"
   },
   "dependencies": {
-    "@repo/shared": "workspace:*",
+    "@hono/node-server": "^2.0.1",
     "@orpc/server": "latest",
-    "effect-orpc": "latest",
-    "effect": "latest",
-    "hono": "latest",
+    "@repo/shared": "workspace:*",
     "better-auth": "latest",
-    "drizzle-orm": "latest",
     "better-sqlite3": "latest",
+    "drizzle-orm": "latest",
+    "effect": "latest",
+    "effect-orpc": "latest",
+    "hono": "latest",
     "nanoid": "latest"
   },
   "devDependencies": {
-    "tsx": "latest",
-    "tsup": "latest",
+    "@types/better-sqlite3": "latest",
     "drizzle-kit": "latest",
-    "vitest": "latest",
-    "@types/better-sqlite3": "latest"
+    "tsup": "latest",
+    "tsx": "latest",
+    "vitest": "latest"
   }
 }
