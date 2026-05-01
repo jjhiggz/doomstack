@@ -1,0 +1,9 @@
+- generic [ref=e12]:
+  - banner [ref=e13]:
+    - heading "Todos" [level=1] [ref=e14]
+    - text: test@test.com
+    - button "Logout" [ref=e15]
+  - generic [ref=e16]:
+    - textbox "What needs to be done?" [ref=e17]
+    - button "Add" [ref=e18]
+  - paragraph [ref=e19]: No todos yet. Add one above!

@@ -1,0 +1,14 @@
+- generic [ref=e2]:
+  - heading "Login" [level=1] [ref=e3]
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - text: Email
+      - textbox "Email" [ref=e6]
+    - generic [ref=e7]:
+      - text: Password
+      - textbox "Password" [ref=e8]
+    - button "Log In" [ref=e9]
+  - paragraph [ref=e10]:
+    - text: Don't have an account?
+    - link "Sign up" [ref=e11] [cursor=pointer]:
+      - /url: /signup
