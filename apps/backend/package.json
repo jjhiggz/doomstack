@@ -1,0 +1,35 @@
+{
+  "name": "@repo/backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./router": "./src/router.ts"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup src/index.ts --format esm --dts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@repo/shared": "workspace:*",
+    "@orpc/server": "latest",
+    "effect-orpc": "latest",
+    "effect": "latest",
+    "hono": "latest",
+    "better-auth": "latest",
+    "drizzle-orm": "latest",
+    "better-sqlite3": "latest",
+    "nanoid": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "tsup": "latest",
+    "drizzle-kit": "latest",
+    "vitest": "latest",
+    "@types/better-sqlite3": "latest"
+  }
+}
