@@ -3,7 +3,7 @@ import { createRootRouteWithContext, Outlet, HeadContent, Scripts } from "@tanst
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCss from "~/styles.css?url";
 
-export interface RouterContext {
+interface RouterContext {
   queryClient: QueryClient;
 }
 

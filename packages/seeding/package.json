@@ -20,8 +20,7 @@
     "better-auth": "latest",
     "drizzle-orm": "latest",
     "effect": "latest",
-    "nanoid": "latest",
-    "pg": "latest"
+    "nanoid": "latest"
   },
   "devDependencies": {
     "@types/pg": "latest",

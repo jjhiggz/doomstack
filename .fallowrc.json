@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "unresolved-imports": "warn"
+  },
+  "duplicates": {
+    "enabled": false
+  },
+  "overrides": [
+    {
+      "files": ["**/*.typetest.ts"],
+      "rules": {
+        "unused-files": "off",
+        "unused-exports": "off",
+        "unused-types": "off"
+      }
+    },
+    {
+      "files": ["apps/backend/src/utils/type-testing.ts"],
+      "rules": {
+        "unused-files": "off",
+        "unused-exports": "off",
+        "unused-types": "off"
+      }
+    }
+  ],
+  "ignoreExports": [
+    {
+      "file": "apps/web/src/components/ui/**",
+      "exports": ["*"]
+    }
+  ]
+}

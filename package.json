@@ -8,11 +8,13 @@
     "fmt:check": "oxfmt --check .",
     "lint": "oxlint . && tsx packages/lint-rules/src/cli.ts",
     "typecheck": "turbo typecheck",
-    "check": "pnpm fmt:check && pnpm lint && pnpm typecheck",
+    "fallow": "fallow dead-code",
+    "check": "pnpm fmt:check && pnpm lint && pnpm typecheck && pnpm fallow",
     "test": "turbo test",
     "seed": "tsx packages/seeding/src/cli.ts"
   },
   "devDependencies": {
+    "fallow": "^2.62.0",
     "oxfmt": "^0.47.0",
     "oxlint": "latest",
     "tsx": "^4.21.0",

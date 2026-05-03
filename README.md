@@ -50,7 +50,7 @@ pnpm seed <scenario> down  # Tear down
 |---------|-------------|
 | `pnpm dev` | Run all dev servers |
 | `pnpm build` | Build all packages |
-| `pnpm check` | Format + lint + typecheck |
+| `pnpm check` | Format + lint + typecheck + dead code |
 | `pnpm test` | Run all tests |
 | `pnpm fmt` | Format all files |
 | `pnpm lint` | Lint all files |
@@ -78,4 +78,4 @@ packages/
 - **Backend:** Effect-TS, oRPC, Hono, Drizzle (Postgres), better-auth
 - **Frontend:** TanStack Start, React, TanStack Query, oRPC client
 - **UI:** shadcn/ui (Base UI variant), Tailwind CSS v4
-- **Tooling:** pnpm workspaces, Turborepo, Vitest, oxlint, oxfmt
+- **Tooling:** pnpm workspaces, Turborepo, Vitest, oxlint, oxfmt, Fallow
