@@ -1,11 +1,14 @@
 {
-  "rules": {
-    "unresolved-imports": "warn"
-  },
   "duplicates": {
     "enabled": false
   },
   "overrides": [
+    {
+      "files": ["**/*.css"],
+      "rules": {
+        "unresolved-imports": "off"
+      }
+    },
     {
       "files": ["**/*.typetest.ts"],
       "rules": {
