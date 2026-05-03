@@ -8,20 +8,20 @@ The demo is a simple auth-gated SQLite todo list. The architecture is the intere
 
 ## Stack
 
-| Layer | Tool |
-|-------|------|
-| Monorepo | pnpm workspaces + Turborepo |
-| Frontend | TanStack Start (RC), TanStack Router, TanStack Query |
-| API layer | oRPC (v1) + effect-orpc (Approach A: Effect-native procedures) |
-| Backend runtime | Effect-TS with ManagedRuntime for DI |
-| Auth | better-auth (email/password only) |
-| Backend HTTP | Hono (Fetch API compatible, serves oRPC + better-auth) |
-| Database | SQLite + Drizzle ORM |
-| Schemas | Zod (v4, source of truth) |
-| Type checking | @effect/tsgo (typescript-go + Effect LSP plugin) |
-| Linting | oxlint (with no-unsafe-type-assertion = error) |
-| Pattern matching | ts-pattern (exhaustive matching on typed errors) |
-| UI | Minimal/functional (plain HTML or basic Tailwind) |
+| Layer            | Tool                                                           |
+| ---------------- | -------------------------------------------------------------- |
+| Monorepo         | pnpm workspaces + Turborepo                                    |
+| Frontend         | TanStack Start (RC), TanStack Router, TanStack Query           |
+| API layer        | oRPC (v1) + effect-orpc (Approach A: Effect-native procedures) |
+| Backend runtime  | Effect-TS with ManagedRuntime for DI                           |
+| Auth             | better-auth (email/password only)                              |
+| Backend HTTP     | Hono (Fetch API compatible, serves oRPC + better-auth)         |
+| Database         | SQLite + Drizzle ORM                                           |
+| Schemas          | Zod (v4, source of truth)                                      |
+| Type checking    | @effect/tsgo (typescript-go + Effect LSP plugin)               |
+| Linting          | oxlint (with no-unsafe-type-assertion = error)                 |
+| Pattern matching | ts-pattern (exhaustive matching on typed errors)               |
+| UI               | Minimal/functional (plain HTML or basic Tailwind)              |
 
 ## Design Rules
 
@@ -32,27 +32,27 @@ The demo is a simple auth-gated SQLite todo list. The architecture is the intere
 
 ## Naming Conventions
 
-| Category | Prefix/Pattern | Example |
-|----------|---------------|---------|
-| Drizzle table def | `T_*` (plural) | `T_todos` |
-| Drizzle select type | `Row_*` | `Row_Todo` |
-| Drizzle insert type | `RowInsert_*` | `RowInsert_Todo` |
-| Zod domain schema | `S_*` | `S_Todo` |
-| Zod input schema | `SIn_D_*` | `SIn_D_listTodos` |
-| Zod output schema | `SOut_D_*` | `SOut_D_listTodos` |
-| Inferred TS type | `I_*` | `I_Todo` |
-| Inferred input type | `IIn_D_*` | `IIn_D_listTodos` |
-| Inferred output type | `IOut_D_*` | `IOut_D_listTodos` |
-| Effect error class | `E_*` (no Error suffix) | `E_TodoNotFound` |
-| Effect service tag | `Svc_*` | `Svc_TodosRepo` |
-| Effect layer | `L_*` | `L_TodosRepo` |
-| Effect runtime | `RT_*` | `RT_main` |
-| oRPC procedure | `D_*` | `D_listTodos` |
-| oRPC middleware | `MW_*` | `MW_authed` |
-| oRPC router | `R_*` | `R_todos` |
-| React component | `C_*` | `C_TodoList` |
-| Custom hook | `use*` | `useTodos` |
-| oRPC client | `orpc` | `orpc` |
+| Category             | Prefix/Pattern          | Example            |
+| -------------------- | ----------------------- | ------------------ |
+| Drizzle table def    | `T_*` (plural)          | `T_todos`          |
+| Drizzle select type  | `Row_*`                 | `Row_Todo`         |
+| Drizzle insert type  | `RowInsert_*`           | `RowInsert_Todo`   |
+| Zod domain schema    | `S_*`                   | `S_Todo`           |
+| Zod input schema     | `SIn_D_*`               | `SIn_D_listTodos`  |
+| Zod output schema    | `SOut_D_*`              | `SOut_D_listTodos` |
+| Inferred TS type     | `I_*`                   | `I_Todo`           |
+| Inferred input type  | `IIn_D_*`               | `IIn_D_listTodos`  |
+| Inferred output type | `IOut_D_*`              | `IOut_D_listTodos` |
+| Effect error class   | `E_*` (no Error suffix) | `E_TodoNotFound`   |
+| Effect service tag   | `Svc_*`                 | `Svc_TodosRepo`    |
+| Effect layer         | `L_*`                   | `L_TodosRepo`      |
+| Effect runtime       | `RT_*`                  | `RT_main`          |
+| oRPC procedure       | `D_*`                   | `D_listTodos`      |
+| oRPC middleware      | `MW_*`                  | `MW_authed`        |
+| oRPC router          | `R_*`                   | `R_todos`          |
+| React component      | `C_*`                   | `C_TodoList`       |
+| Custom hook          | `use*`                  | `useTodos`         |
+| oRPC client          | `orpc`                  | `orpc`             |
 
 ## Project Structure
 
@@ -201,9 +201,10 @@ export class Svc_TodosRepo extends Context.Tag("Svc_TodosRepo")<
 >() {}
 
 export const L_TodosRepo = Layer.succeed(Svc_TodosRepo, {
-  list: (filter) => Effect.gen(function* () {
-    // Drizzle query against T_todos
-  }),
+  list: (filter) =>
+    Effect.gen(function* () {
+      // Drizzle query against T_todos
+    }),
   // ...
 });
 ```
@@ -311,12 +312,12 @@ Adding a new error variant to a procedure forces every consumer to handle it at 
 
 ## API Endpoints
 
-| Procedure | Input | Output | Errors | Auth |
-|-----------|-------|--------|--------|------|
-| `D_listTodos` | filter?: all/active/completed | `{ todos: I_Todo[] }` | `E_Database` | Required |
-| `D_createTodo` | title: string | `I_Todo` | `E_TodoValidation`, `E_Database` | Required |
-| `D_toggleTodo` | id: string | `I_Todo` | `E_TodoNotFound`, `E_Database` | Required |
-| `D_deleteTodo` | id: string | `{ success: true }` | `E_TodoNotFound`, `E_Database` | Required |
+| Procedure      | Input                         | Output                | Errors                           | Auth     |
+| -------------- | ----------------------------- | --------------------- | -------------------------------- | -------- |
+| `D_listTodos`  | filter?: all/active/completed | `{ todos: I_Todo[] }` | `E_Database`                     | Required |
+| `D_createTodo` | title: string                 | `I_Todo`              | `E_TodoValidation`, `E_Database` | Required |
+| `D_toggleTodo` | id: string                    | `I_Todo`              | `E_TodoNotFound`, `E_Database`   | Required |
+| `D_deleteTodo` | id: string                    | `{ success: true }`   | `E_TodoNotFound`, `E_Database`   | Required |
 
 ## Dev Workflow
 

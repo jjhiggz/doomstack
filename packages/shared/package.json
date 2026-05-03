@@ -4,11 +4,20 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    "./todos": "./src/todos.schema.ts",
+    "./todos.stub": "./src/todos.stub.ts",
+    "./auth": "./src/auth.schema.ts",
+    "./utils/stub-builder": "./src/utils/stub-builder.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "zod": "latest",
     "effect": "latest",
-    "effect-orpc": "latest"
+    "effect-orpc": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.5"
   }
 }

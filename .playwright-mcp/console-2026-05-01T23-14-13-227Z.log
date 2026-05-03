@@ -2,3 +2,121 @@
 [      46ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=55b4bb79:14336
 [   45119ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=55b4bb79:14336
 [   69596ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=55b4bb79:14336
+[  390853ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:968
+[  392005ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:14336
+[  815830ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:14336
+[  850096ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:327
+[  850098ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:327
+[  850099ms] [ERROR] %o
+
+%s
+
+%s
+ TypeError: Cannot read properties of null (reading 'useRef')
+    at exports.useRef (http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:776:30)
+    at useButton (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_button.js?v=9042f936:301:34)
+    at Button (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_button.js?v=9042f936:670:40)
+    at Object.react_stack_bottom_frame (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:12867:12)
+    at renderWithHooks (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:4212:19)
+    at updateForwardRef (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:5395:16)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:6203:21)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:850:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:8428:92)
+    at workLoopSync (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:8324:37) The above error occurred in the <Button> component. React will try to recreate this component tree from scratch using the error boundary you provided, CatchBoundaryImpl. @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:5272
+[  850099ms] [WARNING] Warning: The following error wasn't caught by any route! At the very least, consider setting an 'errorComponent' in your RootRoute! @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=675faa9c:39
+[  850099ms] [WARNING] Warning: Cannot read properties of null (reading 'useRef') @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=675faa9c:40
+[  850131ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:327
+[  850134ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:327
+[  850134ms] [ERROR] %o
+
+%s
+
+%s
+ TypeError: Cannot read properties of null (reading 'useRef')
+    at exports.useRef (http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=d692aed3:776:30)
+    at useButton (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_button.js?v=9042f936:301:34)
+    at Button (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_button.js?v=9042f936:670:40)
+    at Object.react_stack_bottom_frame (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:12867:12)
+    at renderWithHooks (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:4212:19)
+    at updateForwardRef (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:5395:16)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:6203:21)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:850:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:8428:92)
+    at workLoopSync (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:8324:37) The above error occurred in the <Button> component. React will try to recreate this component tree from scratch using the error boundary you provided, CatchBoundaryImpl. @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=76ad4993:5272
+[  850134ms] [WARNING] Warning: The following error wasn't caught by any route! At the very least, consider setting an 'errorComponent' in your RootRoute! @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=675faa9c:39
+[  850134ms] [WARNING] Warning: Cannot read properties of null (reading 'useRef') @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=675faa9c:40
+[  850802ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:14336
+[  852941ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=a5f05ce0:327
+[  852943ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=a5f05ce0:327
+[  852944ms] [ERROR] %o
+
+%s
+
+%s
+ TypeError: Cannot read properties of null (reading 'useContext')
+    at exports.useContext (http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=a5f05ce0:737:22)
+    at useFieldRootContext (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_input.js?v=92d5b71e:106:31)
+    at FieldControl (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_input.js?v=92d5b71e:361:161)
+    at Object.react_stack_bottom_frame (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:12867:12)
+    at renderWithHooks (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:4212:19)
+    at updateForwardRef (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:5395:16)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:6203:21)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:850:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:8428:92)
+    at workLoopSync (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:8324:37) The above error occurred in the <FieldControl> component. React will try to recreate this component tree from scratch using the error boundary you provided, CatchBoundaryImpl. @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d692aed3:5272
+[  852944ms] [WARNING] Warning: The following error wasn't caught by any route! At the very least, consider setting an 'errorComponent' in your RootRoute! @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=d692aed3:39
+[  852944ms] [WARNING] Warning: Cannot read properties of null (reading 'useContext') @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=d692aed3:40
+[  853364ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:14336
+[  859209ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=0d3d9c09:327
+[  859211ms] [ERROR] Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem. @ http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=0d3d9c09:327
+[  859211ms] [ERROR] %o
+
+%s
+
+%s
+ TypeError: Cannot read properties of null (reading 'useContext')
+    at exports.useContext (http://localhost:3000/node_modules/.vite/deps/react-B9ZbiPjp.js?v=0d3d9c09:737:22)
+    at useFormContext (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_checkbox.js?v=0aa58b5c:112:22)
+    at CheckboxRoot (http://localhost:3000/node_modules/.vite/deps/@base-ui_react_checkbox.js?v=0aa58b5c:190:26)
+    at Object.react_stack_bottom_frame (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:12867:12)
+    at renderWithHooks (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:4212:19)
+    at updateForwardRef (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:5395:16)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:6203:21)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:850:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:8428:92)
+    at workLoopSync (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:8324:37) The above error occurred in the <CheckboxRoot> component. React will try to recreate this component tree from scratch using the error boundary you provided, CatchBoundaryImpl. @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a5f05ce0:5272
+[  859212ms] [WARNING] Warning: The following error wasn't caught by any route! At the very least, consider setting an 'errorComponent' in your RootRoute! @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=a5f05ce0:39
+[  859212ms] [WARNING] Warning: Cannot read properties of null (reading 'useContext') @ http://localhost:3000/@fs/Users/jon-higger/effect-orpc-messaround/node_modules/.pnpm/@tanstack+react-router@1.169.1_react-dom@19.2.5_react@19.2.5__react@19.2.5/node_modules/@tanstack/react-router/dist/esm/Matches.js?v=a5f05ce0:40
+[  859597ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=0d3d9c09:14336

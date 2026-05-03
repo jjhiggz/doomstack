@@ -1,16 +1,23 @@
 {
   "name": "effect-orpc-messaround",
   "private": true,
-  "packageManager": "pnpm@10.32.1",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "oxlint .",
-    "test": "turbo test"
+    "fmt": "oxfmt --write .",
+    "fmt:check": "oxfmt --check .",
+    "lint": "oxlint . && tsx packages/lint-rules/src/cli.ts",
+    "typecheck": "turbo typecheck",
+    "check": "pnpm fmt:check && pnpm lint && pnpm typecheck",
+    "test": "turbo test",
+    "seed": "tsx packages/seeding/src/cli.ts"
   },
   "devDependencies": {
+    "oxfmt": "^0.47.0",
+    "oxlint": "latest",
+    "tsx": "^4.21.0",
     "turbo": "latest",
-    "typescript": "latest",
-    "oxlint": "latest"
-  }
+    "typescript": "latest"
+  },
+  "packageManager": "pnpm@10.32.1"
 }

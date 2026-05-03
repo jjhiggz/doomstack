@@ -1,4 +1,4 @@
-import { D_listTodos, D_createTodo, D_toggleTodo, D_deleteTodo } from "./routes/todos";
+import { D_listTodos, D_createTodo, D_toggleTodo, D_deleteTodo } from "./todos/todos.routes";
 
 export const R_todos = {
   list: D_listTodos,

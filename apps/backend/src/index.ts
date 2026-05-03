@@ -4,7 +4,7 @@ import { cors } from "hono/cors";
 import { RPCHandler } from "@orpc/server/fetch";
 import { onError } from "@orpc/server";
 import { R_root } from "./router";
-import { auth } from "./auth";
+import { auth } from "./auth/auth.config";
 
 const app = new Hono();
 
@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
-  })
+  }),
 );
 
 // better-auth handler

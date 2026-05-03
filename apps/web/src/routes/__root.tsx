@@ -1,13 +1,9 @@
 import type { ReactNode } from "react";
-import {
-  createRootRouteWithContext,
-  Outlet,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet, HeadContent, Scripts } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import appCss from "~/styles.css?url";
 
-interface RouterContext {
+export interface RouterContext {
   queryClient: QueryClient;
 }
 
@@ -18,6 +14,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Effect oRPC Todo App" },
     ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   component: RootComponent,
 });
@@ -40,7 +37,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="min-h-screen bg-background font-sans antialiased">
         {children}
         <Scripts />
       </body>

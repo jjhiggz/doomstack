@@ -1,0 +1,30 @@
+{
+  "name": "@repo/seeding",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./users.factory": "./src/users.factory.ts",
+    "./todos.factory": "./src/todos.factory.ts",
+    "./basics.scenario": "./src/basics.scenario.ts",
+    "./filterable.scenario": "./src/filterable.scenario.ts",
+    "./teardown": "./src/teardown.ts"
+  },
+  "scripts": {
+    "seed": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/backend": "workspace:*",
+    "@repo/shared": "workspace:*",
+    "better-auth": "latest",
+    "drizzle-orm": "latest",
+    "effect": "latest",
+    "nanoid": "latest",
+    "pg": "latest"
+  },
+  "devDependencies": {
+    "@types/pg": "latest",
+    "tsx": "latest"
+  }
+}

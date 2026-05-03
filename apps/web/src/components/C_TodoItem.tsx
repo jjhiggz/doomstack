@@ -1,57 +1,35 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ORPCError } from "@orpc/client";
-import { match, P } from "ts-pattern";
-import { orpc } from "~/lib/orpc";
-import type { I_Todo } from "@repo/shared";
+import type { IRow_Todo } from "@repo/shared/todos";
+import { Checkbox } from "~/components/ui/checkbox";
+import { Button } from "~/components/ui/button";
+import { X } from "lucide-react";
+import { cn } from "~/lib/utils";
+import { useToggleTodo, useDeleteTodo } from "~/lib/queries/todos";
 
-export function C_TodoItem({ todo }: { todo: I_Todo }) {
-  const queryClient = useQueryClient();
-  const listQueryKey = orpc.todos.list.queryOptions({ input: {} }).queryKey;
-
-  const toggleMutation = useMutation({
-    ...orpc.todos.toggle.mutationOptions(),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: listQueryKey }),
-  });
-
-  const deleteMutation = useMutation({
-    ...orpc.todos.delete.mutationOptions(),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: listQueryKey }),
-  });
-
-  const error = toggleMutation.error ?? deleteMutation.error;
+export function C_TodoItem({ todo }: { todo: IRow_Todo }) {
+  const toggleMutation = useToggleTodo();
+  const deleteMutation = useDeleteTodo();
 
   return (
-    <li>
-      <input
-        type="checkbox"
+    <div className="group flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50">
+      <Checkbox
         checked={todo.completed}
-        onChange={() => toggleMutation.mutate({ id: todo.id })}
+        onCheckedChange={() => toggleMutation.mutate({ id: todo.id })}
         disabled={toggleMutation.isPending}
       />
       <span
-        style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+        className={cn("flex-1 text-sm", todo.completed && "text-muted-foreground line-through")}
       >
         {todo.title}
       </span>
-      <button
+      <Button
+        variant="ghost"
+        size="icon-xs"
         onClick={() => deleteMutation.mutate({ id: todo.id })}
         disabled={deleteMutation.isPending}
+        className="opacity-0 group-hover:opacity-100 transition-opacity"
       >
-        x
-      </button>
-      {error &&
-        match(error)
-          .with(
-            P.instanceOf(ORPCError),
-            (e) =>
-              match(e.code)
-                .with("E_TODO_NOT_FOUND", () => <span> Todo not found</span>)
-                .with("E_DATABASE", () => (
-                  <span> DB error: {e.message}</span>
-                ))
-                .otherwise(() => <span> Error: {e.message}</span>),
-          )
-          .otherwise(() => <span> Something went wrong</span>)}
-    </li>
+        <X className="size-3" />
+      </Button>
+    </div>
   );
 }

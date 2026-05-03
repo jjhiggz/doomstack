@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./router": "./src/router.ts"
+    "./router": "./src/router.ts",
+    "./db.service": "./src/db.service.ts",
+    "./todos.table": "./src/tables/todos.table.ts",
+    "./auth.table": "./src/tables/auth.table.ts"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -12,22 +15,24 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.1",
     "@orpc/server": "latest",
     "@repo/shared": "workspace:*",
     "better-auth": "latest",
-    "better-sqlite3": "latest",
     "drizzle-orm": "latest",
     "effect": "latest",
     "effect-orpc": "latest",
     "hono": "latest",
-    "nanoid": "latest"
+    "nanoid": "latest",
+    "pg": "latest",
+    "ts-pattern": "^5.9.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "latest",
+    "@types/pg": "latest",
     "drizzle-kit": "latest",
     "tsup": "latest",
     "tsx": "latest",

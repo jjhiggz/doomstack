@@ -15,21 +15,24 @@
 ## File Map
 
 ### Root
+
 - `package.json` — workspace root, devDependencies for turbo/typescript/oxlint
 - `pnpm-workspace.yaml` — workspace package globs
 - `turbo.json` — task pipeline (dev, build, lint, test)
 - `tsconfig.base.json` — shared TS config with @effect/tsgo plugin
 - `oxlint.json` — linting config, no-unsafe-type-assertion = error
-- `.gitignore` — node_modules, dist, .turbo, *.db
+- `.gitignore` — node_modules, dist, .turbo, \*.db
 
 ### packages/shared
+
 - `package.json` — exports raw .ts source, deps: zod, effect, effect-orpc
 - `tsconfig.json` — extends base
 - `src/index.ts` — barrel export
-- `src/todos.ts` — S_Todo, SIn/SOut schemas, I_* types, E_* error classes
+- `src/todos.ts` — S*Todo, SIn/SOut schemas, I*_ types, E\__ error classes
 - `src/auth.ts` — shared auth types
 
 ### apps/backend
+
 - `package.json` — deps: @orpc/server, effect-orpc, effect, hono, better-auth, drizzle-orm, better-sqlite3, nanoid
 - `tsconfig.json` — extends base
 - `drizzle.config.ts` — Drizzle Kit config for SQLite
@@ -45,6 +48,7 @@
 - `src/__tests__/todos-repo.test.ts` — Effect service tests with isolated test DB
 
 ### apps/web
+
 - `package.json` — deps: @tanstack/start, @tanstack/react-router, @tanstack/react-query, @orpc/client, @orpc/tanstack-query, better-auth, ts-pattern, effect, effect-orpc, react, react-dom
 - `tsconfig.json` — extends base
 - `app.config.ts` — TanStack Start config with Vite proxy to backend
@@ -64,29 +68,30 @@
 
 ## Naming Convention Reference
 
-| Category | Prefix | Example |
-|----------|--------|---------|
-| Drizzle table | `T_*` | `T_todos` |
-| Select type | `Row_*` | `Row_Todo` |
-| Insert type | `RowInsert_*` | `RowInsert_Todo` |
-| Zod schema | `S_*` | `S_Todo` |
-| Input schema | `SIn_D_*` | `SIn_D_listTodos` |
-| Output schema | `SOut_D_*` | `SOut_D_listTodos` |
-| Inferred type | `I_*` | `I_Todo` |
-| Effect error | `E_*` | `E_TodoNotFound` |
-| Effect service | `Svc_*` | `Svc_TodosRepo` |
-| Effect layer | `L_*` | `L_TodosRepo` |
-| Effect runtime | `RT_*` | `RT_main` |
-| oRPC procedure | `D_*` | `D_listTodos` |
-| oRPC middleware | `MW_*` | `MW_authed` |
-| oRPC router | `R_*` | `R_todos` |
-| React component | `C_*` | `C_TodoList` |
+| Category        | Prefix        | Example            |
+| --------------- | ------------- | ------------------ |
+| Drizzle table   | `T_*`         | `T_todos`          |
+| Select type     | `Row_*`       | `Row_Todo`         |
+| Insert type     | `RowInsert_*` | `RowInsert_Todo`   |
+| Zod schema      | `S_*`         | `S_Todo`           |
+| Input schema    | `SIn_D_*`     | `SIn_D_listTodos`  |
+| Output schema   | `SOut_D_*`    | `SOut_D_listTodos` |
+| Inferred type   | `I_*`         | `I_Todo`           |
+| Effect error    | `E_*`         | `E_TodoNotFound`   |
+| Effect service  | `Svc_*`       | `Svc_TodosRepo`    |
+| Effect layer    | `L_*`         | `L_TodosRepo`      |
+| Effect runtime  | `RT_*`        | `RT_main`          |
+| oRPC procedure  | `D_*`         | `D_listTodos`      |
+| oRPC middleware | `MW_*`        | `MW_authed`        |
+| oRPC router     | `R_*`         | `R_todos`          |
+| React component | `C_*`         | `C_TodoList`       |
 
 ---
 
 ### Task 1: Monorepo Root Scaffolding
 
 **Files:**
+
 - Create: `package.json`
 - Create: `pnpm-workspace.yaml`
 - Create: `turbo.json`
@@ -217,6 +222,7 @@ git commit -m "feat: monorepo root scaffolding with pnpm + turbo + oxlint"
 ### Task 2: Shared Contracts Package
 
 **Files:**
+
 - Create: `packages/shared/package.json`
 - Create: `packages/shared/tsconfig.json`
 - Create: `packages/shared/src/todos.ts`
@@ -374,6 +380,7 @@ git commit -m "feat: shared contracts package with Zod schemas and Effect error 
 ### Task 3: Backend Scaffolding + Database Layer
 
 **Files:**
+
 - Create: `apps/backend/package.json`
 - Create: `apps/backend/tsconfig.json`
 - Create: `apps/backend/drizzle.config.ts`
@@ -477,10 +484,7 @@ import * as schema from "./schema";
 
 export type DrizzleDB = BetterSQLite3Database<typeof schema>;
 
-export class Svc_Database extends Context.Tag("Svc_Database")<
-  Svc_Database,
-  DrizzleDB
->() {}
+export class Svc_Database extends Context.Tag("Svc_Database")<Svc_Database, DrizzleDB>() {}
 
 export const L_Database = (dbPath: string) =>
   Layer.sync(Svc_Database, () => {
@@ -493,10 +497,12 @@ export const L_Database = (dbPath: string) =>
 - [ ] **Step 6: Install backend dependencies and push schema**
 
 Run:
+
 ```bash
 cd ~/effect-orpc-messaround && pnpm install
 cd apps/backend && pnpm db:push
 ```
+
 Expected: Installs all deps, creates local.db with todos table. better-auth will create its own tables later.
 
 - [ ] **Step 7: Commit**
@@ -511,6 +517,7 @@ git commit -m "feat: backend scaffolding with Drizzle SQLite schema and Effect D
 ### Task 4: Backend better-auth Setup
 
 **Files:**
+
 - Create: `apps/backend/src/auth.ts`
 
 - [ ] **Step 1: Create apps/backend/src/auth.ts**
@@ -540,10 +547,12 @@ export const auth = betterAuth({
 - [ ] **Step 2: Generate better-auth tables**
 
 Run:
+
 ```bash
 cd ~/effect-orpc-messaround/apps/backend
 npx @better-auth/cli generate --config ./src/auth.ts
 ```
+
 Expected: Generates migration files for better-auth user/session tables. Review the output and run migrations if needed. Alternatively, better-auth auto-creates tables on first request if using the `push` approach — verify which method the CLI produces.
 
 - [ ] **Step 3: Commit**
@@ -558,6 +567,7 @@ git commit -m "feat: better-auth setup with email/password and Drizzle SQLite ad
 ### Task 5: Backend Effect Services (TDD)
 
 **Files:**
+
 - Create: `apps/backend/src/services/todos-repo.ts`
 - Create: `apps/backend/src/__tests__/todos-repo.test.ts`
 
@@ -609,7 +619,7 @@ describe("Svc_TodosRepo", () => {
         const created = yield* repo.create("Test todo", "user-1");
         const listed = yield* repo.list();
         return { created, listed };
-      })
+      }),
     );
 
     expect(result.created.title).toBe("Test todo");
@@ -625,7 +635,7 @@ describe("Svc_TodosRepo", () => {
         const created = yield* repo.create("Toggle me", "user-1");
         const toggled = yield* repo.toggle(created.id, "user-1");
         return toggled;
-      })
+      }),
     );
 
     expect(result.completed).toBe(true);
@@ -640,7 +650,7 @@ describe("Svc_TodosRepo", () => {
         const listed = yield* repo.list();
         const found = listed.find((t) => t.id === created.id);
         return found;
-      })
+      }),
     );
 
     expect(result).toBeUndefined();
@@ -651,7 +661,7 @@ describe("Svc_TodosRepo", () => {
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         return yield* repo.toggle("nonexistent-id", "user-1");
-      })
+      }),
     );
 
     expect(result._tag).toBe("Failure");
@@ -668,7 +678,7 @@ describe("Svc_TodosRepo", () => {
         const active = yield* repo.list("active");
         const completed = yield* repo.list("completed");
         return { active, completed };
-      })
+      }),
     );
 
     expect(result.active.some((t) => t.title === "Active todo")).toBe(true);
@@ -700,18 +710,9 @@ export class Svc_TodosRepo extends Context.Tag("Svc_TodosRepo")<
   Svc_TodosRepo,
   {
     list: (filter?: string) => Effect.Effect<I_Todo[], E_Database>;
-    create: (
-      title: string,
-      userId: string
-    ) => Effect.Effect<I_Todo, E_Database>;
-    toggle: (
-      id: string,
-      userId: string
-    ) => Effect.Effect<I_Todo, E_TodoNotFound | E_Database>;
-    delete: (
-      id: string,
-      userId: string
-    ) => Effect.Effect<void, E_TodoNotFound | E_Database>;
+    create: (title: string, userId: string) => Effect.Effect<I_Todo, E_Database>;
+    toggle: (id: string, userId: string) => Effect.Effect<I_Todo, E_TodoNotFound | E_Database>;
+    delete: (id: string, userId: string) => Effect.Effect<void, E_TodoNotFound | E_Database>;
   }
 >() {}
 
@@ -741,8 +742,7 @@ export const L_TodosRepo = Layer.effect(
             }
             return query.all().map(rowToTodo);
           },
-          catch: (error) =>
-            new E_Database({ message: String(error) }),
+          catch: (error) => new E_Database({ message: String(error) }),
         }),
 
       create: (title, userId) =>
@@ -755,8 +755,7 @@ export const L_TodosRepo = Layer.effect(
               .run();
             return { id, title, completed: false, createdAt: now };
           },
-          catch: (error) =>
-            new E_Database({ message: String(error) }),
+          catch: (error) => new E_Database({ message: String(error) }),
         }),
 
       toggle: (id, userId) =>
@@ -768,8 +767,7 @@ export const L_TodosRepo = Layer.effect(
                 .from(T_todos)
                 .where(and(eq(T_todos.id, id), eq(T_todos.userId, userId)))
                 .get(),
-            catch: (error) =>
-              new E_Database({ message: String(error) }),
+            catch: (error) => new E_Database({ message: String(error) }),
           });
 
           if (!existing) {
@@ -779,13 +777,8 @@ export const L_TodosRepo = Layer.effect(
           const newCompleted = !existing.completed;
           yield* Effect.try({
             try: () =>
-              db
-                .update(T_todos)
-                .set({ completed: newCompleted })
-                .where(eq(T_todos.id, id))
-                .run(),
-            catch: (error) =>
-              new E_Database({ message: String(error) }),
+              db.update(T_todos).set({ completed: newCompleted }).where(eq(T_todos.id, id)).run(),
+            catch: (error) => new E_Database({ message: String(error) }),
           });
 
           return rowToTodo({ ...existing, completed: newCompleted });
@@ -800,8 +793,7 @@ export const L_TodosRepo = Layer.effect(
                 .from(T_todos)
                 .where(and(eq(T_todos.id, id), eq(T_todos.userId, userId)))
                 .get(),
-            catch: (error) =>
-              new E_Database({ message: String(error) }),
+            catch: (error) => new E_Database({ message: String(error) }),
           });
 
           if (!existing) {
@@ -810,12 +802,11 @@ export const L_TodosRepo = Layer.effect(
 
           yield* Effect.try({
             try: () => db.delete(T_todos).where(eq(T_todos.id, id)).run(),
-            catch: (error) =>
-              new E_Database({ message: String(error) }),
+            catch: (error) => new E_Database({ message: String(error) }),
           });
         }),
     };
-  })
+  }),
 );
 ```
 
@@ -836,6 +827,7 @@ git commit -m "feat: Svc_TodosRepo Effect service with DI + tests"
 ### Task 6: Backend Runtime + oRPC Procedures + Router
 
 **Files:**
+
 - Create: `apps/backend/src/runtime.ts`
 - Create: `apps/backend/src/middleware/auth.ts`
 - Create: `apps/backend/src/routes/todos.ts`
@@ -848,9 +840,7 @@ import { Layer, ManagedRuntime } from "effect";
 import { L_Database } from "./db";
 import { L_TodosRepo } from "./services/todos-repo";
 
-const MainLayer = L_TodosRepo.pipe(
-  Layer.provide(L_Database("./local.db"))
-);
+const MainLayer = L_TodosRepo.pipe(Layer.provide(L_Database("./local.db")));
 
 export const RT_main = ManagedRuntime.make(MainLayer);
 ```
@@ -976,6 +966,7 @@ git commit -m "feat: oRPC procedures with effect-orpc typed errors and auth midd
 ### Task 7: Backend Hono Server Entry
 
 **Files:**
+
 - Create: `apps/backend/src/index.ts`
 
 - [ ] **Step 1: Create apps/backend/src/index.ts**
@@ -996,7 +987,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
-  })
+  }),
 );
 
 // better-auth handler
@@ -1049,6 +1040,7 @@ git commit -m "feat: Hono server entry mounting oRPC and better-auth"
 ### Task 8: Frontend TanStack Start Scaffolding
 
 **Files:**
+
 - Create: `apps/web/package.json`
 - Create: `apps/web/tsconfig.json`
 - Create: `apps/web/app.config.ts`
@@ -1160,14 +1152,10 @@ declare module "@tanstack/react-router" {
 }
 ```
 
-- [ ] **Step 5: Create apps/web/src/routes/__root.tsx**
+- [ ] **Step 5: Create apps/web/src/routes/\_\_root.tsx**
 
 ```tsx
-import {
-  createRootRouteWithContext,
-  Outlet,
-  ScrollRestoration,
-} from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet, ScrollRestoration } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Meta, Scripts } from "@tanstack/start";
 
@@ -1241,6 +1229,7 @@ git commit -m "feat: TanStack Start scaffolding with QueryClient context and Vit
 ### Task 9: Frontend Auth (Client + Pages + Guard)
 
 **Files:**
+
 - Create: `apps/web/src/lib/auth-client.ts`
 - Create: `apps/web/src/routes/login.tsx`
 - Create: `apps/web/src/routes/signup.tsx`
@@ -1407,7 +1396,7 @@ function C_Signup() {
 }
 ```
 
-- [ ] **Step 4: Create apps/web/src/routes/_authed.tsx**
+- [ ] **Step 4: Create apps/web/src/routes/\_authed.tsx**
 
 Layout route that guards all child routes behind authentication.
 
@@ -1439,6 +1428,7 @@ git commit -m "feat: frontend auth with better-auth client, login/signup pages, 
 ### Task 10: Frontend oRPC Client + Todo Pages
 
 **Files:**
+
 - Create: `apps/web/src/lib/orpc.ts`
 - Create: `apps/web/src/components/C_TodoForm.tsx`
 - Create: `apps/web/src/components/C_TodoItem.tsx`
@@ -1460,8 +1450,7 @@ const link = RPCLink({
   headers: () => ({
     "Content-Type": "application/json",
   }),
-  fetch: (input, init) =>
-    fetch(input, { ...init, credentials: "include" }),
+  fetch: (input, init) => fetch(input, { ...init, credentials: "include" }),
 });
 
 const client = createORPCClient<typeof R_root>(link);
@@ -1485,7 +1474,9 @@ export function C_TodoForm() {
   const createMutation = useMutation({
     ...orpc.todos.create.mutationOptions(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: orpc.todos.list.queryOptions({ input: {} }).queryKey });
+      queryClient.invalidateQueries({
+        queryKey: orpc.todos.list.queryOptions({ input: {} }).queryKey,
+      });
       setTitle("");
     },
   });
@@ -1546,9 +1537,7 @@ export function C_TodoItem({ todo }: { todo: I_Todo }) {
         onChange={() => toggleMutation.mutate({ input: { id: todo.id } })}
         disabled={toggleMutation.isPending}
       />
-      <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-        {todo.title}
-      </span>
+      <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>{todo.title}</span>
       <button
         onClick={() => deleteMutation.mutate({ input: { id: todo.id } })}
         disabled={deleteMutation.isPending}
@@ -1586,7 +1575,7 @@ export function C_TodoList({ todos }: { todos: I_Todo[] }) {
 }
 ```
 
-- [ ] **Step 5: Create apps/web/src/routes/_authed/todos.tsx**
+- [ ] **Step 5: Create apps/web/src/routes/\_authed/todos.tsx**
 
 The main page — loads todos via oRPC + TanStack Query, handles errors with ts-pattern.
 
@@ -1602,18 +1591,14 @@ import { authClient } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/_authed/todos")({
   loader: ({ context }) => {
-    context.queryClient.ensureQueryData(
-      orpc.todos.list.queryOptions({ input: {} })
-    );
+    context.queryClient.ensureQueryData(orpc.todos.list.queryOptions({ input: {} }));
   },
   component: C_PageTodos,
 });
 
 function C_PageTodos() {
   const { session } = Route.useRouteContext();
-  const { data, error } = useSuspenseQuery(
-    orpc.todos.list.queryOptions({ input: {} })
-  );
+  const { data, error } = useSuspenseQuery(orpc.todos.list.queryOptions({ input: {} }));
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -1661,6 +1646,7 @@ git commit -m "feat: frontend todo pages with oRPC client, ts-pattern error hand
 ### Task 11: Dev Workflow + End-to-End Verification
 
 **Files:**
+
 - Modify: `turbo.json` (if needed)
 
 - [ ] **Step 1: Verify pnpm install is clean**
