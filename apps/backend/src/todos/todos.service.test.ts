@@ -8,21 +8,19 @@ import { Svc_TodosRepo, L_TodosRepo } from "./todos.service";
 
 const CONNECTION_STRING = "postgresql://postgres:postgres@localhost:5434/effect_orpc";
 
-let pool: pg.Pool;
-
-function makeTestRuntime() {
-  pool = new pg.Pool({ connectionString: CONNECTION_STRING });
+const state = (() => {
+  const pool = new pg.Pool({ connectionString: CONNECTION_STRING });
   const db = drizzle(pool, { schema });
 
   const L_TestDatabase = Layer.succeed(Svc_Database, db);
   const TestLayer = Layer.provideMerge(L_TodosRepo, L_TestDatabase);
-  return ManagedRuntime.make(TestLayer);
-}
+  const runtime = ManagedRuntime.make(TestLayer);
 
-const runtime = makeTestRuntime();
+  return { pool, runtime };
+})();
 
 beforeAll(async () => {
-  await pool.query(`
+  await state.pool.query(`
     CREATE TABLE IF NOT EXISTS todos (
       id TEXT PRIMARY KEY,
       title TEXT NOT NULL,
@@ -32,17 +30,17 @@ beforeAll(async () => {
       due_date TIMESTAMP
     )
   `);
-  await pool.query(`DELETE FROM todos`);
+  await state.pool.query(`DELETE FROM todos`);
 });
 
 afterAll(async () => {
-  await pool.query(`DELETE FROM todos`);
-  await pool.end();
+  await state.pool.query(`DELETE FROM todos`);
+  await state.pool.end();
 });
 
 describe("Svc_TodosRepo", () => {
   it("creates a todo and lists it", async () => {
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         const created = yield* repo.create("Test todo", "user-1");
@@ -60,7 +58,7 @@ describe("Svc_TodosRepo", () => {
 
   it("creates a todo with dueDate", async () => {
     const dueDate = new Date("2026-06-15T00:00:00Z");
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         return yield* repo.create("Due date todo", "user-1", dueDate);
@@ -71,7 +69,7 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("toggles a todo", async () => {
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         const created = yield* repo.create("Toggle me", "user-1");
@@ -84,7 +82,7 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("deletes a todo", async () => {
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         const created = yield* repo.create("Delete me", "user-1");
@@ -99,7 +97,7 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("fails with E_TodoNotFound when toggling nonexistent todo", async () => {
-    const result = await runtime.runPromiseExit(
+    const result = await state.runtime.runPromiseExit(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         return yield* repo.toggle("nonexistent-id", "user-1");
@@ -110,9 +108,9 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("filters by completed status", async () => {
-    await pool.query(`DELETE FROM todos`);
+    await state.pool.query(`DELETE FROM todos`);
 
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         yield* repo.create("Active todo", "user-2");
@@ -131,9 +129,9 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("filters by dueDate presence", async () => {
-    await pool.query(`DELETE FROM todos`);
+    await state.pool.query(`DELETE FROM todos`);
 
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         yield* repo.create("No due date", "user-3");
@@ -150,9 +148,9 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("searches by title", async () => {
-    await pool.query(`DELETE FROM todos`);
+    await state.pool.query(`DELETE FROM todos`);
 
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         yield* repo.create("Buy groceries", "user-4");
@@ -168,9 +166,9 @@ describe("Svc_TodosRepo", () => {
   });
 
   it("sorts by title ascending", async () => {
-    await pool.query(`DELETE FROM todos`);
+    await state.pool.query(`DELETE FROM todos`);
 
-    const result = await runtime.runPromise(
+    const result = await state.runtime.runPromise(
       Effect.gen(function* () {
         const repo = yield* Svc_TodosRepo;
         yield* repo.create("Charlie", "user-5");

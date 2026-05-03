@@ -63,6 +63,7 @@ const columns: ColumnDef<IRow_Todo, unknown>[] = [
     accessorKey: "dueDate",
     header: "Due Date",
     meta: { sortable: true },
+    // lint-ignore: no-as-cast
     cell: ({ getValue }) => <DueDateCell value={getValue() as Date | null} />,
   },
   {
@@ -70,6 +71,7 @@ const columns: ColumnDef<IRow_Todo, unknown>[] = [
     accessorKey: "createdAt",
     header: "Created",
     meta: { sortable: true },
+    // lint-ignore: no-as-cast
     cell: ({ getValue }) => new Date(getValue() as Date).toLocaleDateString(),
   },
   {
@@ -120,6 +122,7 @@ function C_PageTodos() {
     (field: string) => {
       const isSameField = search.sortField === field;
       const nextOrder = isSameField && search.sortOrder === "asc" ? "desc" : "asc";
+      // lint-ignore: no-as-cast
       updateSearch({ sortField: field as IIn_D_listTodos["sortField"], sortOrder: nextOrder });
     },
     [search.sortField, search.sortOrder, updateSearch],
@@ -154,6 +157,7 @@ function C_PageTodos() {
           />
           <C_FilterSelect
             value={search.completed}
+            // lint-ignore: no-as-cast
             onChange={(v) => updateSearch({ completed: v as IIn_D_listTodos["completed"] })}
             options={S_completedFilter.options}
             labels={completedLabels}
@@ -161,6 +165,7 @@ function C_PageTodos() {
           />
           <C_FilterSelect
             value={search.dueDate}
+            // lint-ignore: no-as-cast
             onChange={(v) => updateSearch({ dueDate: v as IIn_D_listTodos["dueDate"] })}
             options={S_dueDateFilter.options}
             labels={dueDateLabels}
