@@ -1,5 +1,16 @@
 # Project: Effect oRPC Todo App
 
+## First-Time Setup
+
+Prerequisites: Node.js 18+, pnpm 10+, Docker
+
+1. `pnpm install`
+2. `docker compose up -d` (starts Postgres)
+3. `pnpm -F @repo/backend db:push` (pushes schema to DB)
+4. `pnpm dev` (starts all dev servers)
+
+Optional: `pnpm seed filterable up` for demo data (login: user@user.com / password)
+
 ## Tech Stack
 
 - **Backend**: Effect-TS + oRPC + Hono + Drizzle (Postgres) + better-auth
